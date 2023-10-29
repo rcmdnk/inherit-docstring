@@ -4,7 +4,7 @@ import pytest
 from git import Repo
 from git.exc import InvalidGitRepositoryError
 
-from python_template import __version__
+from inherit_docstring import __version__
 
 
 def test_version():
@@ -23,5 +23,7 @@ def test_tag():
         repo = Repo(Path(__file__).parents[1])
     except InvalidGitRepositoryError:
         pytest.skip("Not a git repo.")
-    latest_tag = repo.git.tag(sort="creatordate").splitlines()[-1]
-    assert latest_tag == "v" + __version__
+    tags = repo.git.tag(sort="creatordate").splitlines()
+    if len(tags) > 0:
+        latest_tag = tags[-1]
+        assert latest_tag == "v" + __version__

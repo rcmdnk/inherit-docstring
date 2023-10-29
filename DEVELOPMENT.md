@@ -77,7 +77,7 @@ by [GitHub Actions](https://github.co.jp/features/actions).
 The job runs at the Pull Request, too.
 
 It checks codes with `pre-commit` and runs tests with `pytest`.
-It also makes a test coverage report and uploads it to [the coverage branch](REPO_URL/tree/coverage).
+It also makes a test coverage report and uploads it to [the coverage branch](ssh://git@github.com/rcmdnk/inherit-docstring/tree/coverage).
 
 You can see the test status as a badge in the README.
 
