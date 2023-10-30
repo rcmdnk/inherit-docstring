@@ -10,7 +10,7 @@ def test_parent_class(parent):
     name: str
         The name of
         the parent.
-    age: int
+    age:
         The age of the
         parent.
 
@@ -63,7 +63,7 @@ def test_child1_class(child1):
     name: str
         The name of
         the child.
-    age: int
+    age:
         The age of the
         parent.
     child_attr: int
@@ -120,7 +120,7 @@ def test_child2_class(child2):
     name: str
         The name of
         the child2.
-    age: int
+    age:
         The age of the
         parent.
     child_attr: int

@@ -13,7 +13,7 @@ class Parent:
     name: str
         The name of
         the parent.
-    age: int
+    age:
         The age of the
         parent.
 
