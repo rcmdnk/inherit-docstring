@@ -38,7 +38,7 @@ def test_parent_func(parent):
         b: int
             The second parameter.
             No, it is not.
-        c: dict[str, int]
+        c: dict[str, int | float]
             The third parameter.
             humm...
 
@@ -96,7 +96,7 @@ def test_child1_func(child1):
         b: int
             The second parameter.
             No, it is not.
-        c: dict[str, int]
+        c: dict[str, int | float]
             The third parameter.
             humm...
 

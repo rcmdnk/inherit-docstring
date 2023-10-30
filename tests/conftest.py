@@ -37,7 +37,7 @@ class Parent:
         b: int
             The second parameter.
             No, it is not.
-        c: dict[str, int]
+        c: dict[str, int | float]
             The third parameter.
             humm...
 
