@@ -11,26 +11,26 @@ Use inherit-docstring to streamline your documentation process, ensuring consist
 
 ## Features
 
-* Automatic Inheritance: Just add the `@inherit_docstring` decorator, and the child class will seamlessly inherit the parent's class and function docstrings.
-* Structured Sections: Docstrings are broken into sections like `Attributes`, `Notes`, etc. Each section is denoted by its title followed by `---`.
-* Header Section: An exclusive `Header` section is introduced for the starting portion of the docstring without a specific title.
-* Parameter Sections: Certain sections are treated as parameter sections where the content is interpreted as parameter explanations. They include:
-  * Attributes
-  * Parameters
-  * Returns
-  * Yields
-  * Receives
-  * Raises
-  * Warns
-  * Warnings
+- Automatic Inheritance: Just add the `@inherit_docstring` decorator, and the child class will seamlessly inherit the parent's class and function docstrings.
+- Structured Sections: Docstrings are broken into sections like `Attributes`, `Notes`, etc. Each section is denoted by its title followed by `---`.
+- Header Section: An exclusive `Header` section is introduced for the starting portion of the docstring without a specific title.
+- Parameter Sections: Certain sections are treated as parameter sections where the content is interpreted as parameter explanations. They include:
+  - Attributes
+  - Parameters
+  - Returns
+  - Yields
+  - Receives
+  - Raises
+  - Warns
+  - Warnings
 
 ## Behavior
 
-* If a child class function lacks a docstring, it inherits the parent's docstring verbatim.
-* For functions where both parent and child have docstrings:
-    * Section-wise Merge: Docstrings are combined on a section-by-section basis.
-    * Parameter-wise Merge: Within parameter sections, docstrings are combined parameter by parameter.
-    * Child Priority: When both parent and child provide docstrings for the same function or parameter, the child's version is prioritized.
+- If a child class function lacks a docstring, it inherits the parent's docstring verbatim.
+- For functions where both parent and child have docstrings:
+  - Section-wise Merge: Docstrings are combined on a section-by-section basis.
+  - Parameter-wise Merge: Within parameter sections, docstrings are combined parameter by parameter.
+  - Child Priority: When both parent and child provide docstrings for the same function or parameter, the child's version is prioritized.
 
 ## Requirement
 
@@ -169,7 +169,4 @@ class Child(Parent)
  |      -------
  |      ret: int
  |          param1 - param2
- ```
-
-
-
+```

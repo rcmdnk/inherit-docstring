@@ -34,7 +34,10 @@ def parse_docstring(doc: str) -> dict[str, Any]:
             docstrings[section_name] = {}
 
             if section_name in params_sections:
-                params = re.split(r"[ \t]*(\w+)[ \t]*:[ \t]*([\w \[\]\|,]*)\n", section_content)
+                params = re.split(
+                    r"[ \t]*(\w+)[ \t]*:[ \t]*([\w \[\]\|,]*)\n",
+                    section_content,
+                )
                 if params[0] == "":
                     params = params[1:]
                 for j in range(0, len(params), 3):
