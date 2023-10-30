@@ -1,14 +1,14 @@
 [tool.poetry]
 name = "inherit-docstring"
 version = "0.0.1"
-description = ""
+description = "A python decorator to inherit docstring."
 authors = ["rcmdnk <rcmdnk@gmail.com>"]
 repository = "https://github.com/rcmdnk/inherit-docstring"
 homepage = "https://github.com/rcmdnk/inherit-docstring"
 readme = "README.md"
 license = "apache-2.0"
-keywords = []
-classifiers = []
+keywords = ["docstring", "inherit", "decorator"]
+classifiers = ["Development Status :: 3 - Alpha", "Environment :: Console", "Intended Audience :: Developers", "Intended Audience :: End Users/Desktop", "License :: OSI Approved :: Apache Software License", "Natural Language :: English", "Operating System :: OS Independent", "Programming Language :: Python :: 3.9", "Programming Language :: Python :: 3.10", "Programming Language :: Python :: 3.11", "Programming Language :: Python :: 3.12", "Topic :: Decorator", "Topic :: Docstring"]
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
