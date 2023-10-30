@@ -11,8 +11,7 @@ def test_parent_class(parent):
         The name of
         the parent.
     age:
-        The age of the
-        parent.
+        age
 
     Returns
     -------
@@ -39,7 +38,7 @@ def test_parent_func(parent):
         b: int
             The second parameter.
             No, it is not.
-        c: float
+        c: dict[str, int]
             The third parameter.
             humm...
 
@@ -64,8 +63,7 @@ def test_child1_class(child1):
         The name of
         the child.
     age:
-        The age of the
-        parent.
+        age
     child_attr: int
         The child attribute.
 
@@ -98,7 +96,7 @@ def test_child1_func(child1):
         b: int
             The second parameter.
             No, it is not.
-        c: float
+        c: dict[str, int]
             The third parameter.
             humm...
 
@@ -121,8 +119,7 @@ def test_child2_class(child2):
         The name of
         the child2.
     age:
-        The age of the
-        parent.
+        age
     child_attr: int
         The child attribute.
     c_int: int

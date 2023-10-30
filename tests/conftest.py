@@ -14,8 +14,7 @@ class Parent:
         The name of
         the parent.
     age:
-        The age of the
-        parent.
+        age
 
     Returns
     -------
@@ -38,7 +37,7 @@ class Parent:
         b: int
             The second parameter.
             No, it is not.
-        c: float
+        c: dict[str, int]
             The third parameter.
             humm...
 
