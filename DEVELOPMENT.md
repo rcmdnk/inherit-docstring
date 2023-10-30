@@ -84,4 +84,3 @@ You can see the test status as a badge in the README.
 ## Renovate
 
 If you want to update dependencies automatically, [install Renovate into your repository](https://docs.renovatebot.com/getting-started/installing-onboarding/).
-EOF
