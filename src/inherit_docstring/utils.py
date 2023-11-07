@@ -12,6 +12,8 @@ params_sections = [
     "Warnings",
 ]
 
+indent = '    '
+
 
 def strip(doc: str, spaces: int = 0) -> str:
     lines = [x.strip() for x in doc.strip().split("\n")]
@@ -20,7 +22,7 @@ def strip(doc: str, spaces: int = 0) -> str:
 
 def parse_docstring(doc: str) -> dict[str, Any]:
     # Split by the major sections: Parameters, Returns, Notes, etc.
-    sections = re.split(r"\s*([a-zA-Z0-9_]+)\n\s*-+", doc)
+    sections = re.split(rf"{indent}([a-zA-Z0-9_]+)\n{indent}-+", doc)
 
     docstrings: dict[str, Any] = {}
     # First section is always the header
@@ -30,20 +32,25 @@ def parse_docstring(doc: str) -> dict[str, Any]:
     if len(sections) > 1:
         for i in range(1, len(sections), 2):
             section_name = sections[i].strip()
-            section_content = sections[i + 1].strip()
+            section_content = sections[i + 1]
             docstrings[section_name] = {}
 
             if section_name in params_sections:
-                params = re.split(
-                    r"[ \t]*(\w+)[ \t]*:[ \t]*([\w \[\]\|,]*)\n",
+                params = re.split(rf"[\n^]{indent}(\S.*)\n",
                     section_content,
                 )
-                if params[0] == "":
+                while params[0] == "":
                     params = params[1:]
-                for j in range(0, len(params), 3):
-                    docstrings[section_name][params[j]] = (
-                        params[j + 1],
-                        strip(params[j + 2], 4),
+                for j in range(0, len(params), 2):
+                    if ':' in params[j]:
+                        name, type_name = params[j].split(':')
+                    else:
+                        name = params[j]
+                        type_name = ''
+
+                    docstrings[section_name][name.strip()] = (
+                        type_name.strip(),
+                        strip(params[j + 1], len(indent)),
                     )
             else:
                 docstrings[section_name] = strip(section_content)
@@ -56,6 +63,7 @@ def merge_docstring(base_doc: str, doc: str) -> str:
     parse_doc = parse_docstring(doc)
     for section_name in parse_doc:
         if section_name in params_sections:
+            docstring[section_name] = docstring.get(section_name, {})
             for parm in parse_doc[section_name]:
                 docstring[section_name][parm] = parse_doc[section_name][parm]
         else:
