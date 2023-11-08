@@ -23,6 +23,7 @@ Use inherit-docstring to streamline your documentation process, ensuring consist
   - Raises
   - Warns
   - Warnings
+- Deprecated sections: Sections starting with `.. deprecated:: x.y.z`, is parsed as deprecated sections.
 
 ## Behavior
 
@@ -34,7 +35,7 @@ Use inherit-docstring to streamline your documentation process, ensuring consist
 
 ## Requirement
 
-- Python 3.12, 3.11, 3.10, 3.9
+- Python >=3.9
 - Poetry (For development)
 
 ## Installation
