@@ -127,7 +127,7 @@ class Child3(Parent):
     **kwargs : dict, optional
         Extra arguments to `metric`: refer to each metric documentation for a
         list of all possible arguments.
-    """
+    """  # noqa: RST301, RST201, RST213, RST210
 
 
 @pytest.fixture

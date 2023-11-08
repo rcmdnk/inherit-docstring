@@ -14,7 +14,12 @@ params_sections = [
 
 
 def remove_indent(doc: str, indent: int = 4) -> str:
-    return '\n'.join([x[indent:] if x.startswith(' ' * indent) else x for x in doc.strip().split("\n")])
+    return "\n".join(
+        [
+            x[indent:] if x.startswith(" " * indent) else x
+            for x in doc.strip().split("\n")
+        ]
+    )
 
 
 def add_indent(doc: str, indent: int = 4) -> str:
@@ -57,17 +62,17 @@ def parse_docstring(doc: str, indent: int = 4) -> dict[str, Any]:
                         j += 1
                         continue
                     if name is None:
-                        if ':' in params[j]:
-                            colons = params[j].split(':')
+                        if ":" in params[j]:
+                            colons = params[j].split(":")
                             name = colons[0].strip()
-                            type_name = ':'.join(colons[1:]).strip()
+                            type_name = ":".join(colons[1:]).strip()
                         else:
                             name = params[j].strip()
-                            type_name = ''
+                            type_name = ""
                         j += 1
                     else:
-                        description = ''
-                        if params[j].startswith(' '):
+                        description = ""
+                        if params[j].startswith(" "):
                             description = strip(params[j], indent=4)
                             j += 1
 
@@ -110,5 +115,3 @@ def merge_docstring(base_doc: str, doc: str, indent: int = 4) -> str:
         merged_doc += "\n"
     merged_doc = add_indent(merged_doc, indent=indent)
     return merged_doc
-
-

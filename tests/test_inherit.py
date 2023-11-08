@@ -157,6 +157,7 @@ def test_child_with_colon_class(child_with_colon):
     """
     )
 
+
 def test_child_with_conmlex_params(child3):
     assert (
         child3.__doc__
