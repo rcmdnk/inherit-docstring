@@ -162,3 +162,42 @@ def parent_with_colon():
 @pytest.fixture
 def child_with_colon():
     return ChildWithColon()
+
+
+class ParentWithDeprecated:
+    """Parent class.
+
+    This is parent.
+
+    Attributes
+    ----------
+    name : str
+        The name of
+        the parent.
+    age
+        age
+
+    .. deprecated:: 0.1.0
+        Deprecated.
+        0.1.0.
+    """
+
+
+@inherit_docstring
+class ChildWithDeprecated(ParentWithDeprecated):
+    """Child class.
+
+    .. deprecated:: 0.2.0
+        Deprecated.
+        0.2.0.
+    """
+
+
+@pytest.fixture
+def parent_with_deprecated():
+    return ParentWithDeprecated()
+
+
+@pytest.fixture
+def child_with_deprecated():
+    return ChildWithDeprecated()

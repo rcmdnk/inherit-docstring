@@ -37,10 +37,10 @@ def strip(doc: str, indent: int = 0) -> str:
 
 
 def parse_docstring(doc: str, indent: int = 4) -> dict[str, Any]:
-    doc = remove_indent(doc, indent=indent)
+    doc = remove_indent(doc, indent=indent).strip()
 
     # Split by the major sections: Parameters, Returns, Notes, etc.
-    sections = re.split(r"\n([a-zA-Z0-9_]+)\n-+", doc)
+    sections = re.split(r"^([a-zA-Z0-9_]+\n-+|.. deprecated:: .*)\n", doc, flags=re.M)
 
     docstrings: dict[str, Any] = {}
     # First section is always the header
@@ -49,8 +49,11 @@ def parse_docstring(doc: str, indent: int = 4) -> dict[str, Any]:
 
     if len(sections) > 1:
         for i in range(1, len(sections), 2):
-            section_name = sections[i].strip()
-            section_content = sections[i + 1].strip()
+            if not sections[i].startswith(".."):
+                section_name = sections[i].split("\n")[0].strip()
+            else:
+                section_name = sections[i].strip()
+            section_content = sections[i + 1].rstrip()
             docstrings[section_name] = {}
 
             if section_name in params_sections:
@@ -82,7 +85,7 @@ def parse_docstring(doc: str, indent: int = 4) -> dict[str, Any]:
                         )
                         name = None
             else:
-                docstrings[section_name] = strip(section_content)
+                docstrings[section_name] = strip(section_content, indent=4)
 
     return docstrings
 
@@ -101,7 +104,8 @@ def merge_docstring(base_doc: str, doc: str, indent: int = 4) -> str:
     for section_name in docstring:
         if section_name != "Header":
             merged_doc += section_name + "\n"
-            merged_doc += "-" * len(section_name) + "\n"
+            if not section_name.startswith(".."):
+                merged_doc += "-" * len(section_name) + "\n"
         if section_name in params_sections:
             for param in docstring[section_name]:
                 merged_doc += param
