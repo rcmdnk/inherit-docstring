@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "inherit-docstring"
-version = "0.0.4"
+version = "0.1.0"
 description = "A python decorator to inherit docstring."
 authors = ["rcmdnk <rcmdnk@gmail.com>"]
 repository = "https://github.com/rcmdnk/inherit-docstring"
@@ -19,7 +19,7 @@ pytest = "^7.4.2"
 pytest-cov = "^4.1.0"
 pytest-xdist = "^3.3.1"
 pytest-benchmark = "^4.0.0"
-pyproject-pre-commit = "^0.0.28"
+pyproject-pre-commit = "^0.1.0"
 gitpython = "^3.1.37"
 
 [build-system]
