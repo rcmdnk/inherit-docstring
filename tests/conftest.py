@@ -180,7 +180,7 @@ class ParentWithDeprecated:
     .. deprecated:: 0.1.0
         Deprecated.
         0.1.0.
-    """
+    """  # noqa: RST303
 
 
 @inherit_docstring
@@ -190,7 +190,7 @@ class ChildWithDeprecated(ParentWithDeprecated):
     .. deprecated:: 0.2.0
         Deprecated.
         0.2.0.
-    """
+    """  # noqa: RST303
 
 
 @pytest.fixture

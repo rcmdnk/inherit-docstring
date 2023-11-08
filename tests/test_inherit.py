@@ -235,5 +235,3 @@ def test_child_with_deprecated_class(child_with_deprecated):
         0.2.0.
     """
     )
-
-
