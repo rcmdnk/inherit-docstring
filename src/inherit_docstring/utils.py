@@ -5,24 +5,37 @@ params_sections = [
     "Attributes",
     "Parameters",
     "Returns",
-    "Yiels",
+    "Yields",
     "Receives",
     "Raises",
     "Warns",
     "Warnings",
 ]
 
-indent = '    '
+
+def remove_indent(doc: str, indent: int = 4) -> str:
+    return '\n'.join([x[indent:] if x.startswith(' ' * indent) else x for x in doc.strip().split("\n")])
 
 
-def strip(doc: str, spaces: int = 0) -> str:
+def add_indent(doc: str, indent: int = 4) -> str:
+    docstring = "\n".join(
+        [" " * indent + x if x else "" for x in doc.split("\n")]
+    ).strip()
+    if len(docstring.split("\n")) > 0:
+        docstring += "\n" + " " * indent
+    return docstring
+
+
+def strip(doc: str, indent: int = 0) -> str:
     lines = [x.strip() for x in doc.strip().split("\n")]
-    return "\n".join([" " * spaces + x if x else "" for x in lines])
+    return "\n".join([" " * indent + x if x else "" for x in lines])
 
 
-def parse_docstring(doc: str) -> dict[str, Any]:
+def parse_docstring(doc: str, indent: int = 4) -> dict[str, Any]:
+    doc = remove_indent(doc, indent=indent)
+
     # Split by the major sections: Parameters, Returns, Notes, etc.
-    sections = re.split(rf"{indent}([a-zA-Z0-9_]+)\n{indent}-+", doc)
+    sections = re.split(r"\n([a-zA-Z0-9_]+)\n-+", doc)
 
     docstrings: dict[str, Any] = {}
     # First section is always the header
@@ -32,35 +45,46 @@ def parse_docstring(doc: str) -> dict[str, Any]:
     if len(sections) > 1:
         for i in range(1, len(sections), 2):
             section_name = sections[i].strip()
-            section_content = sections[i + 1]
+            section_content = sections[i + 1].strip()
             docstrings[section_name] = {}
 
             if section_name in params_sections:
-                params = re.split(rf"[\n^]{indent}(\S.*)\n",
-                    section_content,
-                )
-                while params[0] == "":
-                    params = params[1:]
-                for j in range(0, len(params), 2):
-                    if ':' in params[j]:
-                        name, type_name = params[j].split(':')
+                params = re.split(r"^(\S.*)\n", section_content, flags=re.M)
+                name = None
+                j = 0
+                while j < len(params):
+                    if not params[j].strip():
+                        j += 1
+                        continue
+                    if name is None:
+                        if ':' in params[j]:
+                            colons = params[j].split(':')
+                            name = colons[0].strip()
+                            type_name = ':'.join(colons[1:]).strip()
+                        else:
+                            name = params[j].strip()
+                            type_name = ''
+                        j += 1
                     else:
-                        name = params[j]
-                        type_name = ''
+                        description = ''
+                        if params[j].startswith(' '):
+                            description = strip(params[j], indent=4)
+                            j += 1
 
-                    docstrings[section_name][name.strip()] = (
-                        type_name.strip(),
-                        strip(params[j + 1], len(indent)),
-                    )
+                        docstrings[section_name][name] = (
+                            type_name.strip(),
+                            description,
+                        )
+                        name = None
             else:
                 docstrings[section_name] = strip(section_content)
 
     return docstrings
 
 
-def merge_docstring(base_doc: str, doc: str) -> str:
-    docstring = parse_docstring(base_doc)
-    parse_doc = parse_docstring(doc)
+def merge_docstring(base_doc: str, doc: str, indent: int = 4) -> str:
+    docstring = parse_docstring(base_doc, indent=indent)
+    parse_doc = parse_docstring(doc, indent=indent)
     for section_name in parse_doc:
         if section_name in params_sections:
             docstring[section_name] = docstring.get(section_name, {})
@@ -75,22 +99,16 @@ def merge_docstring(base_doc: str, doc: str) -> str:
             merged_doc += "-" * len(section_name) + "\n"
         if section_name in params_sections:
             for param in docstring[section_name]:
-                merged_doc += param + ":"
+                merged_doc += param
                 if docstring[section_name][param][0] != "":
-                    merged_doc += " " + docstring[section_name][param][0]
+                    merged_doc += " : " + docstring[section_name][param][0]
                 merged_doc += "\n"
-                merged_doc += docstring[section_name][param][1] + "\n"
+                if docstring[section_name][param][1]:
+                    merged_doc += docstring[section_name][param][1] + "\n"
         else:
             merged_doc += docstring[section_name] + "\n"
         merged_doc += "\n"
-    merged_doc = merged_doc.strip()
+    merged_doc = add_indent(merged_doc, indent=indent)
     return merged_doc
 
 
-def docstring_add_space(doc: str, spaces: int = 4) -> str:
-    docstring = "\n".join(
-        [" " * spaces + x if x else "" for x in doc.split("\n")]
-    ).strip()
-    if len(docstring.split("\n")) > 0:
-        docstring += "\n" + " " * spaces
-    return docstring

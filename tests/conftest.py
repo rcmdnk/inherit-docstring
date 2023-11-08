@@ -10,16 +10,11 @@ class Parent:
 
     Attributes
     ----------
-    name: str
+    name : str
         The name of
         the parent.
-    age:
+    age
         age
-
-    Returns
-    -------
-    ret: int
-        The return value.
 
     Notes
     -----
@@ -31,19 +26,19 @@ class Parent:
 
         Parameters
         ----------
-        a: str
+        a : str
             The first parameter.
             Yes, it is.
-        b: int
+        b : int
             The second parameter.
             No, it is not.
-        c: dict[str, int | float]
+        c : dict[str, int | float]
             The third parameter.
             humm...
 
         Returns
         -------
-        ret: int
+        ret : tuple[str, ...]
             The return value.
         """
         return 1.1
@@ -60,7 +55,7 @@ class Child1(Parent):
     name : str
         The name of
         the child.
-    child_attr: int
+    child_attr : int
         The child attribute.
 
     Notes
@@ -77,7 +72,7 @@ class Child1(Parent):
 
         Parameters
         ----------
-        a: str
+        a : str
             The first parameter in child.
             Yes, it is.
         """
@@ -93,7 +88,7 @@ class Child2(Child1):
     name : str
         The name of
         the child2.
-    c_int: int
+    c_int : int
         The int value.
     """
 
@@ -113,6 +108,33 @@ def child2():
     return Child2()
 
 
+@inherit_docstring
+class Child3(Parent):
+    """Child 3 class.
+
+    Attributes
+    ----------
+    x : int, optional
+    copy1 : bool, default True
+    copy2 : bool, default=True
+    copy3 : bool, default: True
+    order : {'C', 'F', 'A'}
+        Description of `order`.
+    x1, x2 : array_like
+        Input arrays, description of `x1`, `x2`.
+    *args : tuple
+        Additional arguments should be passed as keyword arguments
+    **kwargs : dict, optional
+        Extra arguments to `metric`: refer to each metric documentation for a
+        list of all possible arguments.
+    """
+
+
+@pytest.fixture
+def child3():
+    return Child3()
+
+
 class ParentWithColon:
     """Parent class.
 
@@ -120,7 +142,7 @@ class ParentWithColon:
 
     Attributes
     ----------
-    name: str
+    name : str
         With colon.
         X: Y
         With colon.

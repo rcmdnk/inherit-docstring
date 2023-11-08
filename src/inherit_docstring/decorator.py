@@ -1,4 +1,4 @@
-from .utils import docstring_add_space, merge_docstring
+from .utils import merge_docstring
 
 
 def inherit_docstring(cls: type) -> type:
@@ -8,7 +8,7 @@ def inherit_docstring(cls: type) -> type:
         if base.__doc__ is not None:
             base_doc = base.__doc__
             break
-    cls.__doc__ = docstring_add_space(merge_docstring(base_doc, doc), 4)
+    cls.__doc__ = merge_docstring(base_doc, doc, indent=4)
 
     for name, method in cls.__dict__.items():
         if callable(method):
@@ -21,8 +21,6 @@ def inherit_docstring(cls: type) -> type:
                 ):
                     base_doc = getattr(base, name).__doc__
                     break
-            method.__doc__ = docstring_add_space(
-                merge_docstring(base_doc, doc), 8
-            )
+            method.__doc__ = merge_docstring(base_doc, doc, indent=8)
 
     return cls

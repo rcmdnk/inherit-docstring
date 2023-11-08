@@ -7,16 +7,11 @@ def test_parent_class(parent):
 
     Attributes
     ----------
-    name: str
+    name : str
         The name of
         the parent.
-    age:
+    age
         age
-
-    Returns
-    -------
-    ret: int
-        The return value.
 
     Notes
     -----
@@ -32,19 +27,19 @@ def test_parent_func(parent):
 
         Parameters
         ----------
-        a: str
+        a : str
             The first parameter.
             Yes, it is.
-        b: int
+        b : int
             The second parameter.
             No, it is not.
-        c: dict[str, int | float]
+        c : dict[str, int | float]
             The third parameter.
             humm...
 
         Returns
         -------
-        ret: int
+        ret : tuple[str, ...]
             The return value.
         """
     )
@@ -59,18 +54,13 @@ def test_child1_class(child1):
 
     Attributes
     ----------
-    name: str
+    name : str
         The name of
         the child.
-    age:
+    age
         age
-    child_attr: int
+    child_attr : int
         The child attribute.
-
-    Returns
-    -------
-    ret: int
-        The return value.
 
     Notes
     -----
@@ -90,19 +80,19 @@ def test_child1_func(child1):
 
         Parameters
         ----------
-        a: str
+        a : str
             The first parameter in child.
             Yes, it is.
-        b: int
+        b : int
             The second parameter.
             No, it is not.
-        c: dict[str, int | float]
+        c : dict[str, int | float]
             The third parameter.
             humm...
 
         Returns
         -------
-        ret: int
+        ret : tuple[str, ...]
             The return value.
         """
     )
@@ -115,20 +105,15 @@ def test_child2_class(child2):
 
     Attributes
     ----------
-    name: str
+    name : str
         The name of
         the child2.
-    age:
+    age
         age
-    child_attr: int
+    child_attr : int
         The child attribute.
-    c_int: int
+    c_int : int
         The int value.
-
-    Returns
-    -------
-    ret: int
-        The return value.
 
     Notes
     -----
@@ -150,7 +135,7 @@ def test_parent_with_colon_class(parent_with_colon):
 
     Attributes
     ----------
-    name: str
+    name : str
         With colon.
         X: Y
         With colon.
@@ -159,18 +144,47 @@ def test_parent_with_colon_class(parent_with_colon):
 
 
 def test_child_with_colon_class(child_with_colon):
-    # TODO: fix this
-    # Currently if ':' is in the comment, it is not parsed correctly.
-    # X: Y should be the comment of the name.
     assert (
         child_with_colon.__doc__
         == """Child class.
 
     Attributes
     ----------
-    name: str
+    name : str
         With colon.
-    X: Y
+        X: Y
         With colon.
+    """
+    )
+
+def test_child_with_conmlex_params(child3):
+    assert (
+        child3.__doc__
+        == """Child 3 class.
+
+    Attributes
+    ----------
+    name : str
+        The name of
+        the parent.
+    age
+        age
+    x : int, optional
+    copy1 : bool, default True
+    copy2 : bool, default=True
+    copy3 : bool, default: True
+    order : {'C', 'F', 'A'}
+        Description of `order`.
+    x1, x2 : array_like
+        Input arrays, description of `x1`, `x2`.
+    *args : tuple
+        Additional arguments should be passed as keyword arguments
+    **kwargs : dict, optional
+        Extra arguments to `metric`: refer to each metric documentation for a
+        list of all possible arguments.
+
+    Notes
+    -----
+    This is note.
     """
     )
