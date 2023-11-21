@@ -10,6 +10,7 @@ param_sections = [
     "Raises",
     "Warns",
     "Warnings",
+    "See Also",
 ]
 
 
