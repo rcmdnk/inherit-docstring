@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "inherit-docstring"
-version = "0.1.2"
+version = "0.1.3"
 description = "A python decorator to inherit docstring."
 authors = ["rcmdnk <rcmdnk@gmail.com>"]
 repository = "https://github.com/rcmdnk/inherit-docstring"
