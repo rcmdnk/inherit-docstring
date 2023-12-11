@@ -1,11 +1,11 @@
-commit: [b04063863e4500a71caed764bafd29597c65130e](https://github.com/rcmdnk/inherit-docstring/tree/b04063863e4500a71caed764bafd29597c65130e)
+commit: [e26cfa0cec2d04f0bbddd791f36c6eabb0810887](https://github.com/rcmdnk/inherit-docstring/tree/e26cfa0cec2d04f0bbddd791f36c6eabb0810887)
 
 condition: branch=main, os=ubuntu-latest, python_version=3.12
 
-[![test](https://github.com/rcmdnk/inherit-docstring/actions/workflows/test.yml/badge.svg)](https://github.com/rcmdnk/inherit-docstring/actions/runs/7094507984)
-<a href="https://github.com/rcmdnk/inherit-docstring/blob/b04063863e4500a71caed764bafd29597c65130e/README.md"><img alt="Coverage" src="https://img.shields.io/badge/Coverage-100%25-brightgreen.svg" /></a><details><summary>Coverage Report </summary><table><tr><th>File</th><th>Stmts</th><th>Miss</th><th>Cover</th></tr><tbody><tr><td><b>TOTAL</b></td><td><b>114</b></td><td><b>0</b></td><td><b>100%</b></td></tr></tbody></table></details>
+[![test](https://github.com/rcmdnk/inherit-docstring/actions/workflows/test.yml/badge.svg)](https://github.com/rcmdnk/inherit-docstring/actions/runs/7174027762)
+<a href="https://github.com/rcmdnk/inherit-docstring/blob/e26cfa0cec2d04f0bbddd791f36c6eabb0810887/README.md"><img alt="Coverage" src="https://img.shields.io/badge/Coverage-100%25-brightgreen.svg" /></a><details><summary>Coverage Report </summary><table><tr><th>File</th><th>Stmts</th><th>Miss</th><th>Cover</th></tr><tbody><tr><td><b>TOTAL</b></td><td><b>114</b></td><td><b>0</b></td><td><b>100%</b></td></tr></tbody></table></details>
 
 | Tests | Skipped | Failures | Errors | Time |
 | ----- | ------- | -------- | -------- | ------------------ |
-| 12 | 0 :zzz: | 0 :x: | 0 :fire: | 0.877s :stopwatch: |
+| 12 | 0 :zzz: | 0 :x: | 0 :fire: | 0.819s :stopwatch: |
 
