@@ -275,13 +275,13 @@ toml = ["tomli"]
 
 [[package]]
 name = "cssbeautifier"
-version = "1.15.3"
+version = "1.15.4"
 description = "CSS unobfuscator and beautifier."
 optional = false
 python-versions = "*"
 files = [
-    {file = "cssbeautifier-1.15.3-py3-none-any.whl", hash = "sha256:0dcaf5ce197743a79b3a160b84ea58fcbd9e3e767c96df1171e428125b16d410"},
-    {file = "cssbeautifier-1.15.3.tar.gz", hash = "sha256:406b04d09e7d62c0be084fbfa2cba5126fe37359ea0d8d9f7b963a6354fc8303"},
+    {file = "cssbeautifier-1.15.4-py3-none-any.whl", hash = "sha256:78c84d5e5378df7d08622bbd0477a1abdbd209680e95480bf22f12d5701efc98"},
+    {file = "cssbeautifier-1.15.4.tar.gz", hash = "sha256:9bb08dc3f64c101a01677f128acf01905914cf406baf87434dcde05b74c0acf5"},
 ]
 
 [package.dependencies]
@@ -504,13 +504,13 @@ i18n = ["Babel (>=2.7)"]
 
 [[package]]
 name = "jsbeautifier"
-version = "1.15.3"
+version = "1.15.4"
 description = "JavaScript unobfuscator and beautifier."
 optional = false
 python-versions = "*"
 files = [
-    {file = "jsbeautifier-1.15.3-py3-none-any.whl", hash = "sha256:b207a15ab7529eee4a35ae7790e9ec4e32a2b5026d51e2d0386c3a65e6ecfc91"},
-    {file = "jsbeautifier-1.15.3.tar.gz", hash = "sha256:5f1baf3d4ca6a615bb5417ee861b34b77609eeb12875555f8bbfabd9bf2f3457"},
+    {file = "jsbeautifier-1.15.4-py3-none-any.whl", hash = "sha256:72f65de312a3f10900d7685557f84cb61a9733c50dcc27271a39f5b0051bf528"},
+    {file = "jsbeautifier-1.15.4.tar.gz", hash = "sha256:5bb18d9efb9331d825735fbc5360ee8f1aac5e52780042803943aa7f854f7592"},
 ]
 
 [package.dependencies]
@@ -1523,13 +1523,13 @@ files = [
 
 [[package]]
 name = "trove-classifiers"
-version = "2025.2.18.16"
+version = "2025.3.3.18"
 description = "Canonical source for classifiers on PyPI (pypi.org)."
 optional = false
 python-versions = "*"
 files = [
-    {file = "trove_classifiers-2025.2.18.16-py3-none-any.whl", hash = "sha256:7f6dfae899f23f04b73bc09e0754d9219a6fc4d6cca6acd62f1850a87ea92262"},
-    {file = "trove_classifiers-2025.2.18.16.tar.gz", hash = "sha256:b1ee2e1668589217d4edf506743e28b1834da128f8a122bad522c02d837006e1"},
+    {file = "trove_classifiers-2025.3.3.18-py3-none-any.whl", hash = "sha256:215630da61cf8757c373f81b602fc1283ec5a691cf12c5f9f96f11d6ad5fc7f2"},
+    {file = "trove_classifiers-2025.3.3.18.tar.gz", hash = "sha256:3ffcfa90a428adfde1a5d90e3aa1b87fe474c5dbdbf5ccbca74ed69ba83c5ca7"},
 ]
 
 [[package]]
