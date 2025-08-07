@@ -19,9 +19,10 @@ class Parent:
     Notes
     -----
     This is note.
+
     """
 
-    def func1(self, a: str, b: int, c: float) -> int:
+    def func1(self, a: str, b: int, c: float) -> int:  # noqa: ARG002
         """Function 1.
 
         Parameters
@@ -40,6 +41,7 @@ class Parent:
         -------
         ret : tuple[str, ...]
             The return value.
+
         """
         return 1.1
 
@@ -65,9 +67,10 @@ class Child1(Parent):
     Examples
     --------
     This is example.
+
     """
 
-    def func1(self, a: str, b: int, c: float) -> int:
+    def func1(self, a: str, b: int, c: float) -> int:  # noqa: ARG002, D417
         """Function 1.
 
         Parameters
@@ -75,6 +78,7 @@ class Child1(Parent):
         a : str
             The first parameter in child.
             Yes, it is.
+
         """
         return 1.1
 
@@ -90,21 +94,22 @@ class Child2(Child1):
         the child2.
     c_int : int
         The int value.
+
     """
 
 
 @pytest.fixture
-def parent():
+def parent() -> Parent:
     return Parent()
 
 
 @pytest.fixture
-def child1():
+def child1() -> Child1:
     return Child1()
 
 
 @pytest.fixture
-def child2():
+def child2() -> Child2:
     return Child2()
 
 
@@ -127,11 +132,12 @@ class Child3(Parent):
     **kwargs : dict, optional
         Extra arguments to `metric`: refer to each metric documentation for a
         list of all possible arguments.
-    """  # noqa: RST301, RST201, RST213, RST210
+
+    """
 
 
 @pytest.fixture
-def child3():
+def child3() -> Child3:
     return Child3()
 
 
@@ -146,6 +152,7 @@ class ParentWithColon:
         With colon.
         X: Y
         With colon.
+
     """
 
 
@@ -155,12 +162,12 @@ class ChildWithColon(ParentWithColon):
 
 
 @pytest.fixture
-def parent_with_colon():
+def parent_with_colon() -> ParentWithColon:
     return ParentWithColon()
 
 
 @pytest.fixture
-def child_with_colon():
+def child_with_colon() -> ChildWithColon:
     return ChildWithColon()
 
 
@@ -180,7 +187,8 @@ class ParentWithDeprecated:
     .. deprecated:: 0.1.0
         Deprecated.
         0.1.0.
-    """  # noqa: RST303
+
+    """
 
 
 @inherit_docstring
@@ -190,14 +198,14 @@ class ChildWithDeprecated(ParentWithDeprecated):
     .. deprecated:: 0.2.0
         Deprecated.
         0.2.0.
-    """  # noqa: RST303
+    """
 
 
 @pytest.fixture
-def parent_with_deprecated():
+def parent_with_deprecated() -> ParentWithDeprecated:
     return ParentWithDeprecated()
 
 
 @pytest.fixture
-def child_with_deprecated():
+def child_with_deprecated() -> ChildWithDeprecated:
     return ChildWithDeprecated()

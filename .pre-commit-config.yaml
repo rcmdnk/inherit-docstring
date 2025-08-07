@@ -1,18 +1,11 @@
 repos:
 - repo: https://github.com/rcmdnk/pyproject-pre-commit
-  rev: v0.2.4
+  rev: v0.4.2
   hooks:
-  - id: black-diff
-  - id: black
-  - id: blacken-docs
-  - id: autoflake-diff
-  - id: autoflake
-  - id: autopep8-diff
-  - id: autopep8
-  - id: isort-diff
-  - id: isort
-  - id: flake8
-  - id: bandit
+  - id: ruff-lint-diff
+  - id: ruff-lint
+  - id: ruff-format-diff
+  - id: ruff-format
   - id: mypy
   - id: shellcheck
   - id: mdformat-check
@@ -37,3 +30,7 @@ repos:
     - id: detect-aws-credentials
       args:
         - "--allow-missing-credentials"
+- repo: https://github.com/rhysd/actionlint
+  rev: v1.7.7
+  hooks:
+    - id: actionlint

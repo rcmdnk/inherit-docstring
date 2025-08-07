@@ -1,4 +1,21 @@
-def test_parent_class(parent):
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from conftest import (
+        Child1,
+        Child2,
+        Child3,
+        ChildWithColon,
+        ChildWithDeprecated,
+        Parent,
+        ParentWithColon,
+        ParentWithDeprecated,
+    )
+
+
+def test_parent_class(parent: Parent) -> None:
     assert (
         parent.__doc__
         == """Parent class.
@@ -20,7 +37,7 @@ def test_parent_class(parent):
     )
 
 
-def test_parent_func(parent):
+def test_parent_func(parent: Parent) -> None:
     assert (
         parent.func1.__doc__
         == """Function 1.
@@ -45,7 +62,7 @@ def test_parent_func(parent):
     )
 
 
-def test_child1_class(child1):
+def test_child1_class(child1: Child1) -> None:
     assert (
         child1.__doc__
         == """Child class.
@@ -73,7 +90,7 @@ def test_child1_class(child1):
     )
 
 
-def test_child1_func(child1):
+def test_child1_func(child1: Child1) -> None:
     assert (
         child1.func1.__doc__
         == """Function 1.
@@ -98,7 +115,7 @@ def test_child1_func(child1):
     )
 
 
-def test_child2_class(child2):
+def test_child2_class(child2: Child2) -> None:
     assert (
         child2.__doc__
         == """Child 2 class.
@@ -126,7 +143,7 @@ def test_child2_class(child2):
     )
 
 
-def test_child_with_conmlex_params(child3):
+def test_child_with_conmlex_params(child3: Child3) -> None:
     assert (
         child3.__doc__
         == """Child 3 class.
@@ -159,7 +176,7 @@ def test_child_with_conmlex_params(child3):
     )
 
 
-def test_parent_with_colon_class(parent_with_colon):
+def test_parent_with_colon_class(parent_with_colon: ParentWithColon) -> None:
     assert (
         parent_with_colon.__doc__
         == """Parent class.
@@ -176,7 +193,7 @@ def test_parent_with_colon_class(parent_with_colon):
     )
 
 
-def test_child_with_colon_class(child_with_colon):
+def test_child_with_colon_class(child_with_colon: ChildWithColon) -> None:
     assert (
         child_with_colon.__doc__
         == """Child class.
@@ -191,7 +208,9 @@ def test_child_with_colon_class(child_with_colon):
     )
 
 
-def test_parent_with_deprecated_class(parent_with_deprecated):
+def test_parent_with_deprecated_class(
+    parent_with_deprecated: ParentWithDeprecated,
+) -> None:
     assert (
         parent_with_deprecated.__doc__
         == """Parent class.
@@ -213,7 +232,9 @@ def test_parent_with_deprecated_class(parent_with_deprecated):
     )
 
 
-def test_child_with_deprecated_class(child_with_deprecated):
+def test_child_with_deprecated_class(
+    child_with_deprecated: ChildWithDeprecated,
+) -> None:
     assert (
         child_with_deprecated.__doc__
         == """Child class.
