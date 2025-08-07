@@ -1,34 +1,32 @@
 # Development
 
-## Poetry
+## uv
 
-Use [Poetry](https://python-poetry.org/) to setup environment.
+Use [uv](https://docs.astral.sh/uv/) to setup environment.
 
-To install poetry, run:
-
-```
-$ pip install poetry
-```
-
-or use `pipx` (`x` is `3` or anything of your python version).
-
-Setup poetry environment:
+To install uv, run:
 
 ```
-$ poetry install
+$ pip install uv
 ```
 
-Then enter the environment:
+Setup uv environment:
 
 ```
-$ poetry shell
+$ uv sync
+```
+
+To enter the environment:
+
+```
+$ source .venv/bin/activate
 ```
 
 ## pre-commit
 
 To check codes at the commit, use [pre-commit](https://pre-commit.com/).
 
-`pre-commit` command will be installed in the poetry environment.
+`pre-commit` command will be installed in the uv environment.
 
 First, run:
 
@@ -77,7 +75,7 @@ by [GitHub Actions](https://github.co.jp/features/actions).
 The job runs at the Pull Request, too.
 
 It checks codes with `pre-commit` and runs tests with `pytest`.
-It also makes a test coverage report and uploads it to [the coverage branch](ssh://git@github.com/rcmdnk/inherit-docstring/tree/coverage).
+It also makes a test coverage report and uploads it to [the coverage branch](https://github.com/rcmdnk/inherit-docstring/tree/coverage).
 
 You can see the test status as a badge in the README.
 

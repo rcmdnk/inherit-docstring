@@ -20,7 +20,6 @@ on:
         default: "ubuntu-latest"
         options:
           - "ubuntu-latest"
-
       main_py_ver:
         description: "Main python version for coverage/tmate."
         type: choice
@@ -62,10 +61,10 @@ jobs:
         id: is_main
         run: |
           if [ "${{ github.ref }}" = "refs/heads/${{ env.MAIN_BRANCH }}" ] && [ "${{ matrix.os }}" = "${{ env.MAIN_OS }}" ] && [ "${{ matrix.python-version }}" = "${{ env.MAIN_PY_VER }}" ];then
-            echo "IS_MAIN=1" >> $GITHUB_ENV
+            echo "IS_MAIN=1" >> "$GITHUB_ENV"
             is_main=1
           else
-            echo "IS_MAIN=0" >> $GITHUB_ENV
+            echo "IS_MAIN=0" >> "$GITHUB_ENV"
             is_main=0
           fi
           if [ "${{ env.TMATE }}" = "true" ];then
@@ -73,20 +72,16 @@ jobs:
               echo "Tmate is enabled and this is not main, skip tests"
               exit 1
             fi
-            echo "DEBUG=1" >> $GITHUB_ENV
+            echo "DEBUG=1" >> "$GITHUB_ENV"
           else
-            echo "DEBUG=0" >> $GITHUB_ENV
+            echo "DEBUG=0" >> "$GITHUB_ENV"
           fi
       - uses: rcmdnk/python-action@v3
         with:
           checkout: 1
           setup-python: 1
           python-version: "${{ matrix.python-version }}"
-          pip: 'pip'
-          setup-cmd: 'poetry install'
-          pip-packages: ''
-          poetry: 1
-          cache: 'poetry'
+          setup-type: 'uv'
           pytest: 1
           pytest-tests-path: 'tests/'
           pytest-ignore: ''

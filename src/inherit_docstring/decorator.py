@@ -2,8 +2,8 @@ from .utils import merge_docstring
 
 
 def inherit_docstring(cls: type) -> type:
-    doc = cls.__doc__ if cls.__doc__ is not None else ""
-    base_doc = ""
+    doc = cls.__doc__ if cls.__doc__ is not None else ''
+    base_doc = ''
     for base in cls.__bases__:
         if base.__doc__ is not None:
             base_doc = base.__doc__
@@ -12,8 +12,8 @@ def inherit_docstring(cls: type) -> type:
 
     for name, method in cls.__dict__.items():
         if callable(method):
-            doc = method.__doc__ if method.__doc__ is not None else ""
-            base_doc = ""
+            doc = method.__doc__ if method.__doc__ is not None else ''
+            base_doc = ''
             for base in cls.__bases__:
                 if (
                     hasattr(base, name)
