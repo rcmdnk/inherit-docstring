@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from inherit_docstring import inherit_docstring
 
+from .utils import add_indent
+
 
 class Parent:
     """Parent class.
@@ -47,51 +49,51 @@ class Parent:
 
 
 def test_parent_class() -> None:
-    assert (
-        Parent.__doc__
-        == """Parent class.
+    assert Parent.__doc__ == add_indent(
+        """Parent class.
 
-    This is parent.
+This is parent.
 
-    Attributes
-    ----------
-    name : str
-        The name of
-        the parent.
+Attributes
+----------
+name : str
+    The name of
+    the parent.
+age
     age
-        age
 
-    Notes
-    -----
-    This is note.
+Notes
+-----
+This is note.
 
-    """
+""",
+        'class',
     )
 
 
 def test_parent_func() -> None:
-    assert (
-        Parent.func1.__doc__
-        == """Function 1.
+    assert Parent.func1.__doc__ == add_indent(
+        """Function 1.
 
-        Parameters
-        ----------
-        a : str
-            The first parameter.
-            Yes, it is.
-        b : int
-            The second parameter.
-            No, it is not.
-        c : dict[str, int | float]
-            The third parameter.
-            humm...
+Parameters
+----------
+a : str
+    The first parameter.
+    Yes, it is.
+b : int
+    The second parameter.
+    No, it is not.
+c : dict[str, int | float]
+    The third parameter.
+    humm...
 
-        Returns
-        -------
-        ret : tuple[str, ...]
-            The return value.
+Returns
+-------
+ret : tuple[str, ...]
+    The return value.
 
-        """
+""",
+        'func',
     )
 
 
@@ -133,57 +135,57 @@ class Child(Parent):
 
 
 def test_child_class() -> None:
-    assert (
-        Child.__doc__
-        == """Child class.
+    assert Child.__doc__ == add_indent(
+        """Child class.
 
-    This is child.
+This is child.
 
-    Attributes
-    ----------
-    name : str
-        The name of
-        the child.
+Attributes
+----------
+name : str
+    The name of
+    the child.
+age
     age
-        age
-    child_attr : int
-        The child attribute.
+child_attr : int
+    The child attribute.
 
-    Notes
-    -----
-    This is child note.
+Notes
+-----
+This is child note.
 
-    Examples
-    --------
-    This is example.
+Examples
+--------
+This is example.
 
-    """
+""",
+        'class',
     )
 
 
 def test_child_func() -> None:
-    assert (
-        Child.func1.__doc__
-        == """Function 1.
+    assert Child.func1.__doc__ == add_indent(
+        """Function 1.
 
-        Parameters
-        ----------
-        a : str
-            The first parameter in child.
-            Yes, it is.
-        b : int
-            The second parameter.
-            No, it is not.
-        c : dict[str, int | float]
-            The third parameter.
-            humm...
+Parameters
+----------
+a : str
+    The first parameter in child.
+    Yes, it is.
+b : int
+    The second parameter.
+    No, it is not.
+c : dict[str, int | float]
+    The third parameter.
+    humm...
 
-        Returns
-        -------
-        ret : tuple[str, ...]
-            The return value.
+Returns
+-------
+ret : tuple[str, ...]
+    The return value.
 
-        """
+""",
+        'func',
     )
 
 
@@ -203,31 +205,31 @@ class Decendant(Child):
 
 
 def test_decendant_class() -> None:
-    assert (
-        Decendant.__doc__
-        == """Decendant class.
+    assert Decendant.__doc__ == add_indent(
+        """Decendant class.
 
-    Attributes
-    ----------
-    name : str
-        The name of
-        the decendant.
+Attributes
+----------
+name : str
+    The name of
+    the decendant.
+age
     age
-        age
-    child_attr : int
-        The child attribute.
-    c_int : int
-        The int value.
+child_attr : int
+    The child attribute.
+c_int : int
+    The int value.
 
-    Notes
-    -----
-    This is child note.
+Notes
+-----
+This is child note.
 
-    Examples
-    --------
-    This is example.
+Examples
+--------
+This is example.
 
-    """
+""",
+        'class',
     )
 
 
@@ -255,34 +257,34 @@ class ComplicatedParamsChild(Parent):
 
 
 def test_child_with_conmlex_params() -> None:
-    assert (
-        ComplicatedParamsChild.__doc__
-        == """Child class with complicated parameters.
+    assert ComplicatedParamsChild.__doc__ == add_indent(
+        """Child class with complicated parameters.
 
-    Attributes
-    ----------
-    name : str
-        The name of
-        the parent.
+Attributes
+----------
+name : str
+    The name of
+    the parent.
+age
     age
-        age
-    x : int, optional
-    copy1 : bool, default True
-    copy2 : bool, default=True
-    copy3 : bool, default: True
-    order : {'C', 'F', 'A'}
-        Description of `order`.
-    x1, x2 : array_like
-        Input arrays, description of `x1`, `x2`.
-    *args : tuple
-        Additional arguments should be passed as keyword arguments
-    **kwargs : dict, optional
-        Extra arguments to `metric`: refer to each metric documentation for a
-        list of all possible arguments.
+x : int, optional
+copy1 : bool, default True
+copy2 : bool, default=True
+copy3 : bool, default: True
+order : {'C', 'F', 'A'}
+    Description of `order`.
+x1, x2 : array_like
+    Input arrays, description of `x1`, `x2`.
+*args : tuple
+    Additional arguments should be passed as keyword arguments
+**kwargs : dict, optional
+    Extra arguments to `metric`: refer to each metric documentation for a
+    list of all possible arguments.
 
-    Notes
-    -----
-    This is note.
+Notes
+-----
+This is note.
 
-    """
+""",
+        'class',
     )

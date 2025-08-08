@@ -1,4 +1,9 @@
+import sys
+
 from .utils import merge_docstring
+
+CLASS_INDENT = 4 if sys.version_info < (3, 13) else 0
+FUNC_INDENT = 8 if sys.version_info < (3, 13) else 0
 
 
 def inherit_docstring(cls: type) -> type:
@@ -8,7 +13,7 @@ def inherit_docstring(cls: type) -> type:
         if base.__doc__ is not None:
             base_doc = base.__doc__
             break
-    cls.__doc__ = merge_docstring(base_doc, doc, indent=4)
+    cls.__doc__ = merge_docstring(base_doc, doc, indent=CLASS_INDENT)
 
     for name, method in cls.__dict__.items():
         if callable(method):
@@ -21,6 +26,6 @@ def inherit_docstring(cls: type) -> type:
                 ):
                     base_doc = getattr(base, name).__doc__
                     break
-            method.__doc__ = merge_docstring(base_doc, doc, indent=8)
+            method.__doc__ = merge_docstring(base_doc, doc, indent=FUNC_INDENT)
 
     return cls

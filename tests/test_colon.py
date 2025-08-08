@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from inherit_docstring import inherit_docstring
 
+from .utils import add_indent
+
 
 class ParentWithColon:
     """Parent class with colon in descriptions.
@@ -19,20 +21,20 @@ class ParentWithColon:
 
 
 def test_parent_with_colon_class() -> None:
-    assert (
-        ParentWithColon.__doc__
-        == """Parent class with colon in descriptions.
+    assert ParentWithColon.__doc__ == add_indent(
+        """Parent class with colon in descriptions.
 
-    This is parent.
+This is parent.
 
-    Attributes
-    ----------
-    name : str
-        With colon.
-        X: Y
-        With colon.
+Attributes
+----------
+name : str
+    With colon.
+    X: Y
+    With colon.
 
-    """
+""",
+        'class',
     )
 
 
@@ -42,16 +44,16 @@ class ChildWithColon(ParentWithColon):
 
 
 def test_child_with_colon_class() -> None:
-    assert (
-        ChildWithColon.__doc__
-        == """Child class.
+    assert ChildWithColon.__doc__ == add_indent(
+        """Child class.
 
-    Attributes
-    ----------
-    name : str
-        With colon.
-        X: Y
-        With colon.
+Attributes
+----------
+name : str
+    With colon.
+    X: Y
+    With colon.
 
-    """
+""",
+        'class',
     )

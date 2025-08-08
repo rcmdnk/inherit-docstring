@@ -2,6 +2,8 @@ from __future__ import annotations
 
 from inherit_docstring import inherit_docstring
 
+from .utils import add_indent
+
 
 class ParentOneline:
     """Parent class with oneline docstring."""
@@ -72,44 +74,44 @@ class ChildMultiline(ParentOneline):
 
 
 def test_child_multiline_class() -> None:
-    assert (
-        ChildMultiline.__doc__
-        == """Child class with multiline docstring.
+    assert ChildMultiline.__doc__ == add_indent(
+        """Child class with multiline docstring.
 
-    This is child.
+This is child.
 
-    Attributes
-    ----------
-    name : str
-        The name of
-        the child.
-    child_attr : int
-        The child attribute.
+Attributes
+----------
+name : str
+    The name of
+    the child.
+child_attr : int
+    The child attribute.
 
-    Notes
-    -----
-    This is child note.
+Notes
+-----
+This is child note.
 
-    Examples
-    --------
-    This is example.
+Examples
+--------
+This is example.
 
-    """
+""",
+        'class',
     )
 
 
 def test_child_multiline_func() -> None:
-    assert (
-        ChildMultiline.func1.__doc__
-        == """Function 1.
+    assert ChildMultiline.func1.__doc__ == add_indent(
+        """Function 1.
 
-        Parameters
-        ----------
-        a : str
-            The first parameter in child.
-            Yes, it is.
+Parameters
+----------
+a : str
+    The first parameter in child.
+    Yes, it is.
 
-        """
+""",
+        'func',
     )
 
 
@@ -123,13 +125,13 @@ class ChildMultiHeader(ParentOneline):
 
 
 def test_child_multiheader_class() -> None:
-    assert (
-        ChildMultiHeader.__doc__
-        == """Child class with multiline header.
+    assert ChildMultiHeader.__doc__ == add_indent(
+        """Child class with multiline header.
 
-    This is child.
+This is child.
 
-    """
+""",
+        'class',
     )
 
 
@@ -142,10 +144,10 @@ class ChildMultiHeaderNoBlankLine(ParentOneline):
 
 
 def test_child_multiheader_no_blank_line_class() -> None:
-    assert (
-        ChildMultiHeaderNoBlankLine.__doc__
-        == """Child class with multiline header without last blank line.
+    assert ChildMultiHeaderNoBlankLine.__doc__ == add_indent(
+        """Child class with multiline header without last blank line.
 
-    This is child.
-    """
+This is child.
+""",
+        'class',
     )
