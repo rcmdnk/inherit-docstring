@@ -33,6 +33,7 @@ def test_parent_class(parent: Parent) -> None:
     Notes
     -----
     This is note.
+
     """
     )
 
@@ -58,6 +59,7 @@ def test_parent_func(parent: Parent) -> None:
         -------
         ret : tuple[str, ...]
             The return value.
+
         """
     )
 
@@ -189,6 +191,7 @@ def test_parent_with_colon_class(parent_with_colon: ParentWithColon) -> None:
         With colon.
         X: Y
         With colon.
+
     """
     )
 
@@ -228,6 +231,7 @@ def test_parent_with_deprecated_class(
     .. deprecated:: 0.1.0
         Deprecated.
         0.1.0.
+
     """
     )
 
