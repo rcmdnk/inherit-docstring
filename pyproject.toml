@@ -54,6 +54,9 @@ ignore = [
     "FBT003", # Boolean positional value in function call
     "TID252", # Prefer absolute imports over relative imports from parent modules
     "PLC0415", # `import` should be at the top-level of a file
+    "D413", # Missing blank line after last section
+    "D417",  # Missing argument descriptions in the docstring
+    "ARG002", # Unused method argument
 ]
 
 [tool.ruff.lint.per-file-ignores]

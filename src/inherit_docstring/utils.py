@@ -23,11 +23,15 @@ def remove_indent(doc: str, indent: int = 4) -> str:
     )
 
 
-def add_indent(doc: str, indent: int = 4) -> str:
+def add_indent(
+    doc: str, indent: int = 4, last_blank_line: bool = False
+) -> str:
     docstring = '\n'.join(
         [' ' * indent + x if x else '' for x in doc.split('\n')]
     ).strip()
-    if len(docstring.split('\n')) > 0:
+    if last_blank_line:
+        docstring += '\n\n' + ' ' * indent
+    elif len(docstring.split('\n')) > 1:
         docstring += '\n' + ' ' * indent
     return docstring
 
@@ -76,6 +80,11 @@ def parse_param_section(content: str) -> dict[str, tuple[str, str]]:
 
 
 def parse_docstring(doc: str, indent: int = 4) -> dict[str, Any]:
+    if len(lines := doc.split('\n')) > 1:
+        last_blank_line = lines[-2].strip() == ''
+    else:
+        last_blank_line = False
+
     doc = remove_indent(doc, indent=indent).strip()
 
     # Split by the major sections: Parameters, Returns, Notes, etc.
@@ -99,6 +108,8 @@ def parse_docstring(doc: str, indent: int = 4) -> dict[str, Any]:
                 docstrings[section_name] = parse_param_section(section_content)
             else:
                 docstrings[section_name] = section_content.rstrip()
+
+    docstrings['last_blank_line'] = last_blank_line
 
     return docstrings
 
@@ -124,6 +135,11 @@ def make_param_doc(params: dict[str, tuple[str, str]]) -> str:
 def merge_docstring(base_doc: str, doc: str, indent: int = 4) -> str:
     docstring = parse_docstring(base_doc, indent=indent)
     parse_doc = parse_docstring(doc, indent=indent)
+    last_blank_line = (
+        docstring['last_blank_line'] or parse_doc['last_blank_line']
+    )
+    del docstring['last_blank_line']
+    del parse_doc['last_blank_line']
     for section_name in parse_doc:
         if section_name in param_sections:
             docstring[section_name] = docstring.get(section_name, {})
@@ -131,13 +147,21 @@ def merge_docstring(base_doc: str, doc: str, indent: int = 4) -> str:
                 docstring[section_name][parm] = parse_doc[section_name][parm]
         else:
             docstring[section_name] = parse_doc[section_name]
-    merged_doc = ''
-    for section_name in docstring:
-        if section_name != 'Header':
-            merged_doc += make_section_name(section_name)
-        if section_name in param_sections:
-            merged_doc += make_param_doc(docstring[section_name])
-        else:
-            merged_doc += docstring[section_name] + '\n'
-        merged_doc += '\n'
-    return add_indent(merged_doc, indent=indent)
+    if (
+        list(docstring.keys()) == ['Header']
+        and '\n' not in docstring['Header']
+    ):
+        merged_doc = docstring['Header']
+    else:
+        merged_doc = ''
+        for section_name in docstring:
+            if section_name != 'Header':
+                merged_doc += make_section_name(section_name)
+            if section_name in param_sections:
+                merged_doc += make_param_doc(docstring[section_name])
+            else:
+                merged_doc += docstring[section_name] + '\n'
+            merged_doc += '\n'
+    return add_indent(
+        merged_doc, indent=indent, last_blank_line=last_blank_line
+    )
