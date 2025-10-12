@@ -28,7 +28,7 @@ Repository = "https://github.com/rcmdnk/inherit-docstring"
 Homepage = "https://github.com/rcmdnk/inherit-docstring"
 
 [build-system]
-requires = ["uv_build>=0.8.0,<0.9.0"]
+requires = ["uv_build>=0.9.2,<0.10.0"]
 build-backend = "uv_build"
 
 [tool.pytest.ini_options]
