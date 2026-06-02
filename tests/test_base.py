@@ -45,7 +45,7 @@ class Parent:
             The return value.
 
         """
-        return 1.1
+        return 1
 
 
 def test_parent_class() -> None:
@@ -131,7 +131,7 @@ class Child(Parent):
             Yes, it is.
 
         """
-        return 1.1
+        return 1
 
 
 def test_child_class() -> None:

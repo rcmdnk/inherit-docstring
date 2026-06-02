@@ -1,12 +1,15 @@
 import sys
+from typing import TypeVar
 
 from .utils import merge_docstring
 
 CLASS_INDENT = 4 if sys.version_info < (3, 13) else 0
 FUNC_INDENT = 8 if sys.version_info < (3, 13) else 0
 
+T = TypeVar('T')
 
-def inherit_docstring(cls: type) -> type:
+
+def inherit_docstring(cls: type[T]) -> type[T]:
     doc = cls.__doc__ if cls.__doc__ is not None else ''
     base_doc = ''
     for base in cls.__bases__:

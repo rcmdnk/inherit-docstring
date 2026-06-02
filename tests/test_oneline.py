@@ -70,7 +70,7 @@ class ChildMultiline(ParentOneline):
             Yes, it is.
 
         """
-        return 1.1
+        return 1
 
 
 def test_child_multiline_class() -> None:

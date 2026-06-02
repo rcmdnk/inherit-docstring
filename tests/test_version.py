@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 
 import pytest
@@ -6,13 +7,13 @@ from git.exc import InvalidGitRepositoryError
 
 from inherit_docstring import __version__
 
+if sys.version_info >= (3, 11):
+    import tomllib
+else:
+    import tomli as tomllib
+
 
 def test_version() -> None:
-    try:
-        import tomllib
-    except ModuleNotFoundError:
-        import tomli as tomllib
-
     with (Path(__file__).parents[1] / 'pyproject.toml').open('rb') as f:
         version = tomllib.load(f)['project']['version']
     assert version == __version__

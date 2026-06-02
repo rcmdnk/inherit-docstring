@@ -1,19 +1,20 @@
 repos:
 - repo: https://github.com/rcmdnk/pyproject-pre-commit
-  rev: v0.4.2
+  rev: v0.6.1
   hooks:
   - id: ruff-lint-diff
   - id: ruff-lint
   - id: ruff-format-diff
   - id: ruff-format
-  - id: mypy
+  - id: ty
+  - id: numpydoc-validation
   - id: shellcheck
   - id: mdformat-check
   - id: mdformat
+  - id: validate-pyproject
 - repo: https://github.com/pre-commit/pre-commit-hooks
-  rev: v5.0.0
+  rev: v6.0.0
   hooks:
-    - id: check-byte-order-marker
     - id: check-yaml
     - id: check-json
     - id: check-toml
@@ -31,6 +32,6 @@ repos:
       args:
         - "--allow-missing-credentials"
 - repo: https://github.com/rhysd/actionlint
-  rev: v1.7.7
+  rev: v1.7.12
   hooks:
     - id: actionlint

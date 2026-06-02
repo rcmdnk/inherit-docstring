@@ -43,7 +43,7 @@ class ParentNoBlankLine:
         ret : tuple[str, ...]
             The return value.
         """
-        return 1.1
+        return 1
 
 
 def test_parent_no_blank_line_class() -> None:
@@ -125,7 +125,7 @@ class ChildNoBlankLine(ParentNoBlankLine):
             The first parameter in child.
             Yes, it is.
         """
-        return 1.1
+        return 1
 
 
 def test_child_no_blank_line_class() -> None:
